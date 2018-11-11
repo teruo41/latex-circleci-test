@@ -17,6 +17,7 @@ jobs:
       - run:
           command: |
             cd papers/test1-en
+            pwd
             latexmk main
       - persist_to_workspace:
           root: /tmp
