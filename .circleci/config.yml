@@ -4,11 +4,11 @@ jobs:
     docker:
       - image: ablu/ubuntu-texlive-full
     steps:
-      - checkout
       - run:
           command: |
             apt-get update
             apt-get install -y git ssh
+      - checkout
       - run:
           command: latexmk main
           working_directory: papers/test1-en
