@@ -6,6 +6,10 @@ jobs:
     steps:
       - checkout
       - run:
+          command: |
+            apt-get update
+            apt-get install -y git
+      - run:
           command: latexmk main
           working_directory: papers/test1-en
   publish-github-release:
