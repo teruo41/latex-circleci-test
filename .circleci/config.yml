@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            echo "CIRCLE_TAG is ${CIRCLE_TAG}"
+            echo "ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -replace ${CIRCLE_TAG} ./main.pdf"
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -replace ${CIRCLE_TAG} ./main.pdf
 workflows:
   version: 2
