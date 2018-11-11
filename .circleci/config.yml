@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: Ablu/docker-ubuntu-texlive-full
+      - image: ablu/docker-ubuntu-texlive-full
     steps:
       - checkout
       - run:
