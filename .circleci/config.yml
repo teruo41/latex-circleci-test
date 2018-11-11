@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: Ablu/docker-ubuntu-texlive-full
+    steps:
+      - checkout
+      - run:
+          command: latexmk main
+          working_directory: papers/test1-en
