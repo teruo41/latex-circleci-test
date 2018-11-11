@@ -2,7 +2,7 @@ version: 2
 
 executors:
   my-executor:
-    working_directory: /tmp
+    working_directory: /root
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
             pwd
             latexmk main
       - persist_to_workspace:
-          root: /tmp
+          root: /root
           paths:
             - project
   publish-github-release:
@@ -28,11 +28,11 @@ jobs:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: /tmp
+          at: /root
       - run:
           name: "Publish Release on GitHub"
           command: |
-            cd /tmp/project/papers/test1-en
+            cd /root/project/papers/test1-en
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} main.pdf
 
 workflows:
