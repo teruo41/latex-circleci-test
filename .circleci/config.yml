@@ -7,7 +7,7 @@ executors:
 jobs:
   build:
     docker:
-      - image: teruo41/ubuntu-texlive2018
+      - image: teruo41/ubuntu1804-texlive2017
     steps:
       - checkout
       - run:
