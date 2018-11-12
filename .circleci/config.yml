@@ -7,17 +7,12 @@ executors:
 jobs:
   build:
     docker:
-      - image: ablu/ubuntu-texlive-full
+      - image: teruo41/ubuntu-texlive2018
     steps:
-      - run:
-          command: |
-            apt-get update
-            apt-get install -y git ssh
       - checkout
       - run:
           command: |
-            cd papers/test1-en
-            pwd
+            cd papers/${TARGET_DIR}
             latexmk main
       - persist_to_workspace:
           root: /root
@@ -32,7 +27,7 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
-            cd /root/project/papers/test1-en
+            cd /root/project/papers/${TARGET_DIR}
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} main.pdf
 
 workflows:
