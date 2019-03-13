@@ -28,7 +28,8 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             cd /root/project/papers/${TARGET_DIR}
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} main.pdf
+            cp main.pdf ${TARGET_DIR}_${CIRCLE_TAG}.pdf
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ${TARGET_DIR}_${CIRCLE_TAG}.pdf
 
 workflows:
   version: 2
